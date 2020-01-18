@@ -1,17 +1,12 @@
 package com.ds.algo.array.arrangement;
 
-public class DoubleFirstElemMoveZeroToEnd {
-
+public class SeperatePositiveAndNegative {
 	static void rearrange(int arr[]) {
 		int n = arr.length;
 		int k = 0;
 		for (int i = 0; i < n; i++) {
-			if (arr[i] != 0) {
-				if (i < n - 1 && arr[i] == arr[i + 1]) {
-					arr[i] = arr[i] * 2;
-					arr[i + 1] = 0;
-				}
-				swap(arr, k, i);
+			if (arr[i] < 0) {
+				swap(arr, i, k);
 				k++;
 			}
 		}
@@ -29,8 +24,8 @@ public class DoubleFirstElemMoveZeroToEnd {
 	}
 
 	public static void main(String[] args) {
-		rearrange(new int[] { 4,4,8 });
-//		rearrange(new int[] { 0, 2, 2, 2, 0, 6, 6, 0, 0, 8 });
+		rearrange(new int[] { 12, 11, -13, -5, 6, -7, 5, -3, -6 });
+		rearrange(new int[] { -12, 11, -13, -5, 6, -7, 5, -3, -6 });
 	}
 
 }
