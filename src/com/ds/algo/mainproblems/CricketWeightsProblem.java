@@ -4,12 +4,14 @@ import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toMap;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class CricketWeightsProblem {
 
@@ -31,6 +33,10 @@ public class CricketWeightsProblem {
 			}
 		}
 
+		calc(bLength, arr, count, map);
+	}
+
+	private static void calc(int bLength, int[] arr, int count, Map<Integer, List<Integer>> map) {
 		Map<Integer, List<Integer>> sorted = map.entrySet().stream()
 				.sorted(comparingInt(e -> e.getValue().size()))
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> {
@@ -79,6 +85,75 @@ public class CricketWeightsProblem {
 		System.out.println(".......................................................");
 	}
 
+	
+	public static void main(String[] args) {
+		//inputs();
+		Map<Integer, List<Integer>> batWeightMap = new HashMap<Integer, List<Integer>>();
+		int bats = 4;
+		int arr[] = new int[bats];
+		batWeightMap.put(1, Arrays.asList(0,1,2,3));
+		batWeightMap.put(2, Arrays.asList(0));
+		batWeightMap.put(3, Arrays.asList(0));
+		batWeightMap.put(4, Arrays.asList(0));
+		calc(bats, arr , 1, batWeightMap);
+		
+		batWeightMap.clear();
+		arr = new int[bats];
+		batWeightMap.put(1, Arrays.asList(0,1,2,3));
+		batWeightMap.put(2, Arrays.asList(1));
+		batWeightMap.put(3, Arrays.asList(0));
+		batWeightMap.put(4, Arrays.asList(1));
+		calc(bats, arr , 1, batWeightMap);
+		
+		batWeightMap.clear();
+		arr = new int[bats];
+		batWeightMap.put(1, Arrays.asList(0,1,2,3));
+		batWeightMap.put(2, Arrays.asList(1, 2));
+		batWeightMap.put(3, Arrays.asList(0, 2));
+		batWeightMap.put(4, Arrays.asList(0, 1));
+		calc(bats, arr , 1, batWeightMap);
+		
+		batWeightMap.clear();
+		arr = new int[bats];
+		batWeightMap.put(1, Arrays.asList(0,1,2,3));
+		batWeightMap.put(2, Arrays.asList(0,1,2,3));
+		batWeightMap.put(3, Arrays.asList(0,1,2,3));
+		batWeightMap.put(4, Arrays.asList(0,1,2,3));
+		calc(bats, arr , 1, batWeightMap);
+		
+		batWeightMap.clear();
+		arr = new int[bats];
+		batWeightMap.put(1, Arrays.asList(0,1,2));
+		batWeightMap.put(2, Arrays.asList(0));
+		batWeightMap.put(3, Arrays.asList(1));
+		batWeightMap.put(4, Arrays.asList(0,1,2));
+		calc(bats, arr , 1, batWeightMap);
+		
+		batWeightMap.clear();
+		arr = new int[3];
+		batWeightMap.put(1, Arrays.asList(0,1));
+		batWeightMap.put(2, Arrays.asList(1,2));
+		batWeightMap.put(3, Arrays.asList(0));
+		calc(3, arr , 1, batWeightMap);
+	}
+
+	private static void inputs() {
+		List<Node> cricketers = new ArrayList<>();
+		List<Node> bats = new ArrayList<>();
+		input1(cricketers, bats);
+		calculate(cricketers, bats);
+
+		input2(cricketers, bats);
+		calculate(cricketers, bats);
+
+		input3(cricketers, bats);
+		calculate(cricketers, bats);
+		
+		input4(cricketers, bats);
+		calculate(cricketers, bats);
+	}
+	
+	
 	private static void calculate2(List<Node> cricketers, List<Node> bats) {
 		int cLength = cricketers.size();
 		int bLength = bats.size();
@@ -129,18 +204,20 @@ public class CricketWeightsProblem {
 		System.out.println(".......................................................");
 	}
 
-	public static void main(String[] args) {
-		List<Node> cricketers = new ArrayList<>();
-		List<Node> bats = new ArrayList<>();
-		input1(cricketers, bats);
-		calculate(cricketers, bats);
-
-		input2(cricketers, bats);
-		calculate(cricketers, bats);
-
-		input3(cricketers, bats);
-		calculate(cricketers, bats);
+	private static void calculate3(List<Node> cricketers, List<Node> bats) {
+		int cLength = cricketers.size();
+		int bLength = bats.size();
+		Set<Integer> set = new HashSet<Integer>();
+		for (int i = 0; i < cLength; i++) {
+			for (int j = 0; j < bLength; j++) {
+				if (cricketers.get(i).weight < bats.get(j).weight && cricketers.get(i).price >= bats.get(j).price) {
+					//set.add(e);
+				}
+			}
+		}
 	}
+	
+	
 
 	private static void input1(List<Node> cricketers, List<Node> bats) {
 		cricketers.clear();
@@ -178,6 +255,20 @@ public class CricketWeightsProblem {
 		cricketers.add(new Node(5, 90));
 		cricketers.add(new Node(10, 90));
 		cricketers.add(new Node(6, 150));
+
+		bats.add(new Node(8, 100));
+		bats.add(new Node(10, 150));
+		bats.add(new Node(11, 60));
+		bats.add(new Node(9, 80));
+	}
+	
+	private static void input4(List<Node> cricketers, List<Node> bats) {
+		cricketers.clear();
+		bats.clear();
+		cricketers.add(new Node(5, 500));
+		cricketers.add(new Node(10, 60));
+		cricketers.add(new Node(10, 60));
+		cricketers.add(new Node(10, 60));
 
 		bats.add(new Node(8, 100));
 		bats.add(new Node(10, 150));
