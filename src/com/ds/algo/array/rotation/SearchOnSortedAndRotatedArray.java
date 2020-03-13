@@ -3,6 +3,7 @@ package com.ds.algo.array.rotation;
 public class SearchOnSortedAndRotatedArray {
 
 	private static int pivotedinarySearch(int arr[], int n, int key) {
+		//Find where the sorting is broken
 		int pivot = findPivot(arr, 0, n - 1);
 
 		if (pivot == -1) {

@@ -12,7 +12,6 @@ public class JugglingAlgorithm {
 	private static void rotate(int arr[], int shiftBy) {
 		int length = arr.length;
 		int gcd = gcd(length, shiftBy);
-
 		for (int i = 0; i < gcd; i++) {
 			int temp = arr[i];
 			int j = i;
@@ -30,10 +29,10 @@ public class JugglingAlgorithm {
 			arr[j] = temp;
 		}
 	}
-
+	
 	public static void main(String[] args) {
-		int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-		int shiftBy = 5;
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7 };
+		int shiftBy = 3;
 		rotate(arr, shiftBy);
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");

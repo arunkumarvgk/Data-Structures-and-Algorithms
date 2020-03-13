@@ -11,14 +11,6 @@ public class ArrayRotation {
 			temp[i] = arr[i];
 		}
 		
-		/*for (int i = 0; i < arr.length; i++) {
-			if (i >= arr.length - shiftBy) {
-				arr[i] = temp[shiftBy2++];
-				continue;
-			} 
-			arr[i] = arr[i + shiftBy];
-		}*/
-		
 		for (int i = 0; i < arr.length-shiftBy; i++) {
 			arr[i] = arr[i + shiftBy];
 		}
